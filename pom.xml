@@ -12,7 +12,7 @@
 	<artifactId>rugbyvitre</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>rugbyvitre</name>
-	<description>Base de données rugby vitré</description>
+	<description>BackEnd Rugby</description>
 	<properties>
 		<java.version>18</java.version>
 		<mapstruct.version>1.5.2.Final</mapstruct.version>
@@ -81,7 +81,7 @@
 				<configuration>
 					<annotationProcessorPaths>
 						<path>
-							<groupId>org.projectlombok</groupId>
+							<groupId>org.project-lombok</groupId>
 							<artifactId>lombok</artifactId>
 							<version>1.18.20</version>
 						</path>
@@ -92,7 +92,7 @@
 						</path>
 					</annotationProcessorPaths>
 					<compilerArgs>
-						<compilerArg>-Amapstruct.defaultComponentModel=spring
+						<compilerArg>MapStruct.defaultComponentModel=spring
 						</compilerArg>
 					</compilerArgs>
 				</configuration>

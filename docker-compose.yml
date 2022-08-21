@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=rugbyVitreAdmin
+      - POSTGRES_PASSWORD=27nQeWWMpcP4FkMmtGo8ehaoE8029pMJxnJ7n6679a3S693RER
+      - POSTGRES_DB=RugbyVitre
+    ports:
+      - "4581:5432"
