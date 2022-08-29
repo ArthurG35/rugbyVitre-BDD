@@ -29,7 +29,6 @@ public class JoueurApi {
 
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    @Operation(summary = "Return all players")
     public ResponseEntity<List<JoueurDto>> getAll(){
         return ResponseEntity.ok(
                 this.joueurService.getAll().stream().map(this.joueurMapper::mapToDto).toList());
