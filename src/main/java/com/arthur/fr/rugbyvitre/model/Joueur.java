@@ -19,9 +19,18 @@ public class Joueur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
+    private Integer age;
+
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, length = 2)
-    private Integer age;
+    @Override
+    public String toString() {
+        return "Joueurs{" +
+                "id=" + id +
+                ", age='" + age + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

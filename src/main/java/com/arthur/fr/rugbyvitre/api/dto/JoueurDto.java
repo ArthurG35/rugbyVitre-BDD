@@ -11,6 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class JoueurDto {
     private Integer id;
-    private String name;
     private Integer age;
+    private String name;
 }
