@@ -17,7 +17,7 @@ public class JoueurServiceImpl implements JoueurService {
     }
     @Override
     public List<Joueur> getAll() {
-        return null;
+        return joueurRepository.findAll();
     }
 
     @Override
