@@ -3,8 +3,6 @@ package com.arthur.fr.rugbyvitre.api.v1;
 import com.arthur.fr.rugbyvitre.api.dto.JoueurDto;
 import com.arthur.fr.rugbyvitre.mapper.JoueurMapper;
 import com.arthur.fr.rugbyvitre.service.JoueurService;
-import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +16,6 @@ import java.util.List;
 public class JoueurApi {
 
 
-
     private final JoueurService joueurService;
     private final JoueurMapper joueurMapper;
 
@@ -29,9 +26,11 @@ public class JoueurApi {
 
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<JoueurDto>> getAll(){
+    public ResponseEntity<List<JoueurDto>> getAll() {
         return ResponseEntity.ok(
-                this.joueurService.getAll().stream().map(this.joueurMapper::mapToDto).toList());
+                this.joueurService.getAll().stream()
+                        .map(this.joueurMapper::mapToDto)
+                        .toList());
 
     }
 }
