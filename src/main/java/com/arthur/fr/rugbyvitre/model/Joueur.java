@@ -1,5 +1,6 @@
 package com.arthur.fr.rugbyvitre.model;
 
+import com.arthur.fr.rugbyvitre.enumeration.Poste;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,14 +24,17 @@ public class Joueur {
     private Integer age;
 
     @Column(nullable = false, length = 100)
-    private String name;
+    private String prenom;
+
+    @Column(nullable = false, length = 100)
+    private String nom;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Poste poste;
 
     @Override
     public String toString() {
-        return "Joueurs{" +
-                "id=" + id +
-                ", age='" + age + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return "Joueurs{" + "id=" + id + ", age='" + age + '\'' + ", prenom='" + prenom + '\'' + ", nom='" + nom + '\'' + poste + '\'' + '}';
     }
 }

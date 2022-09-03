@@ -1,17 +1,15 @@
-DROP TABLE IF EXISTS order_product;
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS customers;
-DROP TABLE IF EXISTS societies;
-DROP TABLE IF EXISTS employees CASCADE;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS joueurs CASCADE;
 
 
 
-create table joueurs
-(
-    id   serial
-        primary key,
-    name varchar(255) not null,
-    age  varchar(10)  not null
+create table joueurs (
+    id  serial not null,
+     age int4 not null,
+    nom varchar(100) not null,
+    poste varchar(255) not null,
+    prenom varchar(100) not null,
+     primary key (id)
 );
+
+
+INSERT INTO joueurs (id, age, prenom, nom, poste) VALUES (1, 21, 'prenom', 'nom', 'PREMIERELIGNE');
