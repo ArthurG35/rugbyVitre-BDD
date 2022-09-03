@@ -1,9 +1,7 @@
 package com.arthur.fr.rugbyvitre.api.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.arthur.fr.rugbyvitre.enumeration.Poste;
+import lombok.*;
 
 @Getter
 @Setter
@@ -12,5 +10,7 @@ import lombok.Setter;
 public class JoueurDto {
     private Integer id;
     private Integer age;
-    private String name;
+    private String prenom;
+    private String nom;
+    private Poste poste;
 }
