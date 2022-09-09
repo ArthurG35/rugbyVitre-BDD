@@ -6,6 +6,8 @@ import com.arthur.fr.rugbyvitre.service.JoueurService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class JoueurServiceImpl implements JoueurService {
@@ -18,6 +20,11 @@ public class JoueurServiceImpl implements JoueurService {
     @Override
     public List<Joueur> getAll() {
         return joueurRepository.findAll();
+    }
+
+    @Override
+    public List<Joueur> getJoueurByEquipe(Integer equipeId) {
+        return joueurRepository.findByEquipe(equipeId);
     }
 
     @Override

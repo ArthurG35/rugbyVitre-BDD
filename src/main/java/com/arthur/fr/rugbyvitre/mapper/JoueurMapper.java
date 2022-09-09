@@ -10,8 +10,11 @@ import org.springframework.stereotype.Component;
 @Mapper(componentModel = "spring")
 public interface JoueurMapper {
 
+    @Mapping(source = "equipe.id", target = "equipeId")
     @Mapping(target = "id", source = "id")
     JoueurDto mapToDto(Joueur joueur);
+
+    @Mapping(source = "equipeId", target = "equipe.id")
     @Mapping(target = "id", source = "id")
     Joueur mapToModel(JoueurDto joueurDto);
 

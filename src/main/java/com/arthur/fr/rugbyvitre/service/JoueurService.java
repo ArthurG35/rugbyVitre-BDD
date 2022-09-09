@@ -8,6 +8,8 @@ public interface JoueurService {
 
     List<Joueur> getAll();
 
+    List<Joueur> getJoueurByEquipe(Integer i);
+
     Joueur getById(Integer id);
 
     Joueur createJoueur(Joueur joueur);

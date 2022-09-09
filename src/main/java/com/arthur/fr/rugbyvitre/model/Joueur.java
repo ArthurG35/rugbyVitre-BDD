@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,15 +24,19 @@ public class Joueur {
     @Column(nullable = false)
     private Integer age;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String prenom;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String nom;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Poste poste;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipe_id")
+    private Equipe equipe;
 
     @Override
     public String toString() {
