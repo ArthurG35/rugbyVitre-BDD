@@ -17,28 +17,8 @@ import java.util.Set;
 @Mapper(componentModel = "spring")
 public interface EquipeMapper {
 
-    @Mapping(target = "joueursIds",  expression = "java(getJoueursIds(joueur))")
     @Mapping(target = "id", source = "id")
     EquipeDto mapToDto(Equipe equipe);
-
-    default List<Integer> getJoueursIds(Equipe equipe) {
-        List<Integer> joueurIds = new ArrayList<>();
-        if(equipe.getJoueurs() != null) {
-            joueurIds = equipe.getOrders().stream()
-                    .map(Joueur::getId)
-                    .toList();
-        }
-        return joueurIds;
-    }
-
-    default Set<Equipe> getJoueurs(EquipeDto equipeDto) {
-        Set<Joueur> joueurs = new HashSet<>();
-        if (equipeDto.getOrdersIds() != null) {
-            equipeDto.getOrdersIds().stream()
-                    .map(order -> orders.add(new Joueur(joueurs)));
-        }
-        return joueurs;
-    }
 
     @Mapping(target = "id", source = "id")
     Equipe mapToModel(EquipeDto equipeDto);

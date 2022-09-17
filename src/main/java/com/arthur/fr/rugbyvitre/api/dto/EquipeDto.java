@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class EquipeDto {
-    private int id;
+    private Integer id;
     private String name;
-    private List<Integer> joueursIds;
 }
+

@@ -1,6 +1,7 @@
 package com.arthur.fr.rugbyvitre.api.dto;
 
 import com.arthur.fr.rugbyvitre.enumeration.Poste;
+import com.arthur.fr.rugbyvitre.model.Equipe;
 import lombok.*;
 
 @Getter
@@ -14,4 +15,5 @@ public class JoueurDto {
     private String prenom;
     private String nom;
     private Poste poste;
+    private Equipe equipeId;
 }

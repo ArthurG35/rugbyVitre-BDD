@@ -23,8 +23,6 @@ public class Equipe {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "equipe")
-    private List<Joueur> joueurList;
 
     @Override
     public String toString() {
