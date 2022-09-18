@@ -11,4 +11,5 @@ import java.util.List;
 public interface JoueurRepository extends JpaRepository<Joueur, Integer> {
 
    List<Joueur> getJoueursByEquipeId(Integer equipeId);
+
 }

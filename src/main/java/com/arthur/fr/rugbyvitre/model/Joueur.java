@@ -30,6 +30,9 @@ public class Joueur {
     @Column(nullable = false)
     private String nom;
 
+    @Column(nullable = true)
+    private Integer placement;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Poste poste;
@@ -40,6 +43,6 @@ public class Joueur {
 
     @Override
     public String toString() {
-        return "Joueurs{" + "id=" + id + ", age='" + age + '\'' + ", prenom='" + prenom + '\'' + ", nom='" + nom + '\'' + ", poste='" + poste + '\'' + ", equipe='" + equipe + '}';
+        return "Joueurs{" + "id=" + id + ", age='" + age + '\'' + ", prenom='" + prenom + '\'' + ", nom='" + nom + '\'' + ", placement='" + placement + '\'' + ", poste='" + poste + '\'' + ", equipe='" + equipe + '}';
     }
 }
