@@ -25,6 +25,8 @@ public class JoueurServiceImpl implements JoueurService {
         return joueurRepository.getJoueursByEquipeId(equipeId);
     }
 
+
+
     @Override
     public Joueur getById(Integer id) {
         return null;
