@@ -1,7 +1,6 @@
 package com.arthur.fr.rugbyvitre.api.v1;
 
 import com.arthur.fr.rugbyvitre.api.dto.EquipeDto;
-import com.arthur.fr.rugbyvitre.api.dto.JoueurDto;
 import com.arthur.fr.rugbyvitre.mapper.EquipeMapper;
 import com.arthur.fr.rugbyvitre.service.EquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/equipes")
 public class EquipeApi {
-
-
     @Autowired
     private final EquipeService equipeService;
     @Autowired
