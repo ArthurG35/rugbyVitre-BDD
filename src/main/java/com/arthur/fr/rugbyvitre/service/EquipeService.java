@@ -8,6 +8,10 @@ public interface EquipeService {
 
     List<Equipe> getAll();
 
+    List<Equipe> getEquipesByVisibilityIs(boolean visibility);
+
+    List<Equipe> getEquipeById(Integer id);
+
     Equipe getById(Integer id);
 
     Equipe createEquipe(Equipe equipe);

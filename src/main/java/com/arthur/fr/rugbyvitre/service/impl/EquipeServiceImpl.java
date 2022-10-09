@@ -21,6 +21,16 @@ public class EquipeServiceImpl implements EquipeService {
     }
 
     @Override
+    public List<Equipe> getEquipesByVisibilityIs(boolean visibility) {
+        return equipeRepository.getEquipesByVisibilityIs(visibility);
+    }
+
+    @Override
+    public List<Equipe> getEquipeById(Integer id) {
+        return equipeRepository.getEquipeById(id);
+    }
+
+    @Override
     public Equipe getById(Integer id) {
         return null;
     }

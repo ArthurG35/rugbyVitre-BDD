@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
@@ -22,6 +21,10 @@ public class Equipe {
 
     @Column(nullable = false)
     private String name;
+
+
+    @Column(nullable = false)
+    private Boolean visibility;
 
 
     @Override
