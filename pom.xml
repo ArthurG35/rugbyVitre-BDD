@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>crm</artifactId>
-	<version>0.0.1-DEV</version>
+	<artifactId>RugbyVitreBDD</artifactId>
+	<version>0.0.4-DEV</version>
 	<name>Application CRM</name>
 	<description>Creation of a car rent application</description>
 
