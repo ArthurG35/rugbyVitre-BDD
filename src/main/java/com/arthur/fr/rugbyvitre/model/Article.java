@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -24,7 +25,7 @@ public class Article {
     private String name;
 
     @Column(nullable = false)
-    private String path;
+    private byte[] image;
 
     @Column(nullable = false)
     private Double prix;
@@ -37,7 +38,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "articles{" + "id=" + id + ", name='" + name + ", path='" + path + ", prix='" + prix + ", sizeShops='" + sizeShops + '}';
+        return "articles{" + "id=" + id + ", name='" + name + ", image='" + Arrays.toString(image) + ", prix='" + prix + ", sizeShops='" + sizeShops + '}';
     }
 
 

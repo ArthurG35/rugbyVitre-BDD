@@ -12,7 +12,7 @@ import java.util.List;
 public class ArticleDto {
     private Integer id;
     private String name;
-    private String path;
+    private byte[] image;
     private Double prix;
     private List<Integer> sizeShopIds;
 
