@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>RugbyVitreBDD</artifactId>
 	<version>0.0.4-DEV</version>
-	<name>Application CRM</name>
+	<name>Application</name>
 	<description>Creation of a car rent application</description>
 
 	<properties>
@@ -28,7 +28,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
