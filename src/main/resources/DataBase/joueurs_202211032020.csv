@@ -1,0 +1,16 @@
+"id","age","nom","poste","prenom","equipe_id","placement"
+2,21,Roux,PREMIERELIGNE,Adrian,1,0
+3,25,Polly,PREMIERELIGNE,Jean,1,1
+1,21,Dubois,PREMIERELIGNE,Lucas,1,2
+4,29,Roux,DEUXIEMELIGNE,Xavier,1,3
+5,22,Petit,DEUXIEMELIGNE,James,1,4
+6,23,Leroy,TROISIEMELIGNE,Hubert,1,5
+7,26,Morel,TROISIEMELIGNE,Henri,1,6
+8,25,Fleury,TROISIEMELIGNE,Louka,1,7
+9,25,Fournier,DEMIMELEE,Léo,1,8
+10,26,Legrand,DEMIOUVERTURE,Jules,1,9
+11,21,Roussel,TROISQUARTSCENTRE,Ugo,1,10
+12,23,Dumont,TROISQUARTSCENTRE,Noé,1,11
+13,24,Meyer,AILIERS,Tom,1,12
+14,22,Pelletier,AILIERS,Arnaud,1,13
+15,27,Dufour,ARRIERE,Axel,1,14
