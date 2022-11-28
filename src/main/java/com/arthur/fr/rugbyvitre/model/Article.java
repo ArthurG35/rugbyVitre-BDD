@@ -36,6 +36,10 @@ public class Article {
             inverseJoinColumns = @JoinColumn(name = "size_id"))
     private List<SizeShop> sizeShops;
 
+    public Article(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "articles{" + "id=" + id + ", name='" + name + ", image='" + Arrays.toString(image) + ", prix='" + prix + ", sizeShops='" + sizeShops + '}';

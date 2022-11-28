@@ -26,7 +26,6 @@ public interface SizeShopMapper {
         return articleIds;
     }
 
-
     @Mapping(target = "id", source = "id")
     SizeShop mapToModel(SizeShopDto sizeShopDto);
 }

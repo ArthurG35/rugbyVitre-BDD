@@ -24,4 +24,8 @@ public class SizeShop {
 
     @ManyToMany(mappedBy = "sizeShops")
     private List<Article> articles;
+
+    public SizeShop(Integer id) {
+        this.id = id;
+    }
 }

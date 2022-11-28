@@ -26,6 +26,15 @@ public interface ArticleMapper {
         return sizes;
     }
 
+    default List<SizeShop> getArticle(ArticleDto articleDto){
+        List<SizeShop> sizeShops = new ArrayList<>();
+        if(articleDto.getSizeShopIds() != null){
+            sizeShops = articleDto.getSizeShopIds().stream().map(SizeShop::new).toList();
+        }
+        return sizeShops;
+    }
+
+    @Mapping(target = "sizeShops", expression = "java(getArticle(articleDto))")
     @Mapping(target = "id", source = "id")
     Article mapToModel(ArticleDto articleDto);
 }

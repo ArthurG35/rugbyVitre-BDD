@@ -1,6 +1,7 @@
 package com.arthur.fr.rugbyvitre.api.v1;
 
 import com.arthur.fr.rugbyvitre.api.dto.ArticleDto;
+import com.arthur.fr.rugbyvitre.exceptions.NotAllowedToDeleteException;
 import com.arthur.fr.rugbyvitre.exceptions.UnknownRessourceException;
 import com.arthur.fr.rugbyvitre.mapper.ArticleMapper;
 import com.arthur.fr.rugbyvitre.service.ArticleService;
@@ -8,12 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.net.URI;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @RestController
@@ -48,5 +48,32 @@ public class ArticleApi {
         }
     }
 
+    @PostMapping(
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE}
+    )
+    public ResponseEntity<ArticleDto> createArticle(@RequestBody final ArticleDto articleDto) throws NoSuchAlgorithmException {
+        ArticleDto articleDtoResponce =
+                this.articleMapper.mapToDto(
+                        this.articleService.createArticle(
+                                this.articleMapper.mapToModel(articleDto)
+                        ));
+
+        return ResponseEntity
+                .created(URI.create("/v1/articles/" + articleDtoResponce.getId()))
+                .body(articleDtoResponce);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable final Integer id) {
+        try {
+            this.articleService.deleteArticle(id);
+            return ResponseEntity.noContent().build();
+        } catch (UnknownRessourceException ure) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ure.getMessage());
+        } catch (NotAllowedToDeleteException ex) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, ex.getMessage());
+        }
+    }
 
 }

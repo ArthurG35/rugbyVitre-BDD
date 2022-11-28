@@ -27,4 +27,15 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findById(id).orElseThrow(() -> new UnknownRessourceException("No Article was found for this ID"));
     }
 
+    @Override
+    public Article createArticle(Article article) {
+        return this.articleRepository.save(article);
+    }
+
+    @Override
+    public void deleteArticle(Integer id) {
+        Article articleToDelete = this.getById(id);
+        this.articleRepository.delete(articleToDelete);
+    }
+
 }
