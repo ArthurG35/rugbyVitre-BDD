@@ -1,5 +1,6 @@
 package com.arthur.fr.rugbyvitre.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -44,12 +45,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().authenticationEntryPoint(new CustomAnthEntryPoint())
                 .and().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/v1/users/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/v1/users/**").hasRole("MEMBER")
+                .anyRequest().authenticated()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/v1/logout"))
                 .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
                 .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true).and().csrf().disable();
+                .invalidateHttpSession(true)
+                .and().csrf().disable();
     }
 }
