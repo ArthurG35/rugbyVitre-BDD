@@ -4,9 +4,11 @@ import com.arthur.fr.rugbyvitre.exceptions.NotAllowedToCreateException;
 import com.arthur.fr.rugbyvitre.exceptions.UnknownRessourceException;
 import com.arthur.fr.rugbyvitre.exceptions.userExceptions.LoginIdentifierException;
 import com.arthur.fr.rugbyvitre.exceptions.userExceptions.UserGrantException;
+import com.arthur.fr.rugbyvitre.exceptions.userExceptions.UserPasswordException;
 import com.arthur.fr.rugbyvitre.model.User;
 import com.arthur.fr.rugbyvitre.repository.UserRepository;
 import com.arthur.fr.rugbyvitre.service.UserServices;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
@@ -37,14 +39,22 @@ public class UserServiceImpl implements UserServices {
 
     @Override
     public User createUser(User user) throws NoSuchAlgorithmException {
-        if (this.isNameAlreadyUse(user.getUsername())) {
+        if (!this.isNameAlreadyUse(user.getUsername()) ) {
             user.setUsername(user.getUsername());
         } else {
             throw new NotAllowedToCreateException("Username is already user");
         }
-        Map<String, String> passwordUser = passwordHash(user.getPassword());
-        user.setPassword(passwordUser.get("password"));
-        user.setKey(passwordUser.get("key"));
+
+        if (this.isPasswordValidate(user.getPassword())) {
+            String passwordEncoded = new BCryptPasswordEncoder().encode(user.getPassword());
+            user.setPassword(passwordEncoded);
+        }else{
+            throw new UserPasswordException();
+        }
+        //TODO: gestion du password entre le form update user et form create user en front.
+        String passwordEncoded = new BCryptPasswordEncoder().encode("user");
+        user.setPassword(passwordEncoded);
+
         return this.userRepository.save(user);
     }
 
@@ -52,14 +62,19 @@ public class UserServiceImpl implements UserServices {
     public User updateUser(User user) throws NoSuchAlgorithmException {
         User userToUpdate = this.getById(user.getId());
 
-        if ((this.isNameAlreadyUse(user.getUsername()))||(user.getUsername().equals(userToUpdate.getUsername()))) {
-            Map<String, String> passwordUser = passwordHash(user.getPassword());
-            userToUpdate.setPassword(passwordUser.get("password"));
-            userToUpdate.setKey(passwordUser.get("key"));
+        if ((!this.isNameAlreadyUse(user.getUsername()))||(user.getUsername().equals(userToUpdate.getUsername()))) {
+            userToUpdate.setUsername(user.getUsername());
         } else {
             throw new NotAllowedToCreateException("Username is already user");
         }
+        //TODO: no update of password by admin
 
+        if (this.isPasswordValidate(user.getPassword())) {
+            String passwordEncoded = new BCryptPasswordEncoder().encode(user.getPassword());
+            userToUpdate.setPassword(passwordEncoded);
+        }else{
+            throw new UserPasswordException();
+        }
         return this.userRepository.save(userToUpdate);
     }
 
@@ -72,15 +87,23 @@ public class UserServiceImpl implements UserServices {
     @Override
     public User getUserByUsernameAndPassword(String username, String password) {
         User user = this.userRepository.findByUsername(username).orElseThrow(() -> new UnknownRessourceException("No user found for the given user/password"));
-        System.out.println(password +' '+ user.getPassword() +' '+ user.getKey());
-        if(checkPassword(password, user.getKey(), user.getPassword())) {
+        if (new BCryptPasswordEncoder().matches(password, user.getPassword())){
             return user;
-        } else {
-            throw new LoginIdentifierException("Wrong password");
+        }else{
+            throw new LoginIdentifierException();
         }
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return this.userRepository.findByUsername(username).orElseThrow(() -> new UnknownRessourceException("No user found for the given user/password"));
     }
 
     private boolean isNameAlreadyUse(String username){
         return this.userRepository.findByUsername(username).isEmpty();
+    }
+
+    private boolean isPasswordValidate(String password){
+        return password !=null && password.length()>3;
     }
 }

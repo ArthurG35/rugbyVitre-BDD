@@ -17,4 +17,6 @@ public interface UserServices {
     void deleteUser(Integer id);
 
     User getUserByUsernameAndPassword(String username, String password);
+
+    User getUserByUsername(String username);
 }
