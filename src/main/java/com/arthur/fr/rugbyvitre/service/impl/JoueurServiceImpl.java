@@ -44,5 +44,4 @@ public class JoueurServiceImpl implements JoueurService {
     public void deleteJoueur(Integer id) {
 
     }
-
 }

@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/joueurs")
@@ -40,7 +38,6 @@ public class JoueurApi {
                 this.joueurService.getAll().stream()
                         .map(this.joueurMapper::mapToDto)
                         .toList());
-
     }
 
     @GetMapping(path = "/byequipe/{equipeId}", produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -49,7 +46,6 @@ public class JoueurApi {
                 this.joueurService.getJoueursByEquipeId(equipeId).stream().sorted(Comparator.comparingInt(Joueur::getPlacement))
                         .map(this.joueurMapper::mapToDto)
                         .toList());
-
     }
 
 }

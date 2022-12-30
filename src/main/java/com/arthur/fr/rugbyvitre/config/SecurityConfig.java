@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().authenticationEntryPoint(new CustomAnthEntryPoint())
                 .and().authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/v1/users/**").hasRole("MEMBER")
+                .antMatchers(HttpMethod.GET,"/v1/equipes/**", "/v1/articles/**", "/v1/joueurs/**", "/v1/partenaires/**", "/v1/sizeshop/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout()

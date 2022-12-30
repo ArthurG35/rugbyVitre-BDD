@@ -51,5 +51,5 @@ public class EquipeApi {
                         .stream()
                         .map(this.equipeMapper::mapToDto)
                         .toList());
-    };
+    }
 }

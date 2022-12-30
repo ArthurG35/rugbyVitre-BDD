@@ -2,7 +2,6 @@ package com.arthur.fr.rugbyvitre.service;
 
 import com.arthur.fr.rugbyvitre.model.Joueur;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface JoueurService {
@@ -18,5 +17,4 @@ public interface JoueurService {
     Joueur updateJoueur(Joueur joueur);
 
     void deleteJoueur(Integer id);
-
 }

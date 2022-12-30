@@ -49,4 +49,5 @@ public class EquipeServiceImpl implements EquipeService {
     public void deleteEquipe(Integer id) {
 
     }
+
 }
