@@ -26,6 +26,9 @@ public class Equipe {
     @Column(nullable = false)
     private Boolean visibility;
 
+    public Equipe(Integer id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {

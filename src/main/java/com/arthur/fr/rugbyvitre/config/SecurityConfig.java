@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
 
@@ -46,6 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().authenticationEntryPoint(new CustomAnthEntryPoint())
                 .and().authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/v1/users/**").hasRole("MEMBER")
+                .antMatchers(HttpMethod.PUT, "/v1/joueurs/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/v1/joueurs/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/v1/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/v1/equipes/**", "/v1/articles/**", "/v1/joueurs/**", "/v1/partenaires/**", "/v1/sizeshop/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

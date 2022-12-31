@@ -7,8 +7,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @Mapper(componentModel = "spring")
@@ -19,13 +20,14 @@ public interface SizeShopMapper {
     SizeShopDto mapToDto(SizeShop sizeShop);
 
     default List<Integer> getArticlesIds(SizeShop sizeShop){
-        List<Integer> articleIds = new ArrayList<>();
-        if(sizeShop.getArticles() != null){
-            articleIds = sizeShop.getArticles().stream().map(Article::getId).toList();
-        }
-        return articleIds;
+        return sizeShop.getArticles() != null ? sizeShop.getArticles().stream().map(Article::getId).collect(Collectors.toList()) : Collections.emptyList();
     }
 
+    default List<Article> getArticles(SizeShopDto sizeShopDto){
+        return sizeShopDto.getArticleIds() != null ? sizeShopDto.getArticleIds().stream().map(Article::new).collect(Collectors.toList()) : Collections.emptyList();
+    }
+
+    @Mapping(target = "articles", expression = "java(getArticles(sizeShopDto))")
     @Mapping(target = "id", source = "id")
     SizeShop mapToModel(SizeShopDto sizeShopDto);
 }

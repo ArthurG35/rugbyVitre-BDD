@@ -1,5 +1,6 @@
 package com.arthur.fr.rugbyvitre.service.impl;
 
+import com.arthur.fr.rugbyvitre.exceptions.UnknownRessourceException;
 import com.arthur.fr.rugbyvitre.model.Joueur;
 import com.arthur.fr.rugbyvitre.repository.JoueurRepository;
 import com.arthur.fr.rugbyvitre.service.JoueurService;
@@ -27,21 +28,29 @@ public class JoueurServiceImpl implements JoueurService {
 
     @Override
     public Joueur getById(Integer id) {
-        return null;
+        return joueurRepository.findById(id).orElseThrow(() -> new UnknownRessourceException("No Joueur with this ID"));
     }
 
     @Override
     public Joueur createJoueur(Joueur joueur) {
-        return null;
+        return this.joueurRepository.save(joueur);
     }
 
     @Override
     public Joueur updateJoueur(Joueur joueur) {
-        return null;
+        Joueur joueurToUpdate = this.getById(joueur.getId());
+        joueurToUpdate.setAge(joueur.getAge());
+        joueurToUpdate.setNom(joueur.getNom());
+        joueurToUpdate.setPoste(joueur.getPoste());
+        joueurToUpdate.setEquipe(joueur.getEquipe());
+        joueurToUpdate.setPlacement(joueur.getPlacement());
+        joueurToUpdate.setPrenom(joueur.getPrenom());
+        return this.joueurRepository.save(joueurToUpdate);
     }
 
     @Override
     public void deleteJoueur(Integer id) {
-
+        Joueur joueurToDelete = this.getById(id);
+        this.joueurRepository.delete(joueurToDelete);
     }
 }

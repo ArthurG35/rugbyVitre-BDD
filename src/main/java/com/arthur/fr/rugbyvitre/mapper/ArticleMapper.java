@@ -7,8 +7,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @Mapper(componentModel = "spring")
@@ -18,20 +19,12 @@ public interface ArticleMapper {
     @Mapping(target = "id", source = "id")
     ArticleDto mapToDto(Article article);
 
-    default List<Integer> getSizeIds(Article article){
-        List<Integer> sizes = new ArrayList<>();
-        if(article.getSizeShops() != null){
-            sizes = article.getSizeShops().stream().map(SizeShop::getId).toList();
-        }
-        return sizes;
+    default List<Integer> getSizeIds(Article article) {
+        return article.getSizeShops() != null ? article.getSizeShops().stream().map(SizeShop::getId).collect(Collectors.toList()) : Collections.emptyList();
     }
 
-    default List<SizeShop> getArticle(ArticleDto articleDto){
-        List<SizeShop> sizeShops = new ArrayList<>();
-        if(articleDto.getSizeShopIds() != null){
-            sizeShops = articleDto.getSizeShopIds().stream().map(SizeShop::new).toList();
-        }
-        return sizeShops;
+    default List<SizeShop> getArticle(ArticleDto articleDto) {
+        return articleDto.getSizeShopIds() != null ? articleDto.getSizeShopIds().stream().map(SizeShop::new).collect(Collectors.toList()) : Collections.emptyList();
     }
 
     @Mapping(target = "sizeShops", expression = "java(getArticle(articleDto))")
