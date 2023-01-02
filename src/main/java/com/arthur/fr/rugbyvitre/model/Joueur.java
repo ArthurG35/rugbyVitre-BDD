@@ -29,8 +29,10 @@ public class Joueur {
     @Column(nullable = false)
     private String nom;
 
+    @Column(nullable = false)
     private Integer placement;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Poste poste;
 

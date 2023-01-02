@@ -61,13 +61,16 @@ public class JoueurApi {
                         .map(this.joueurMapper::mapToDto)
                         .toList());
     }
-    @PutMapping(path = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE} )
+    @PutMapping(
+            path = "/{id}",consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE} )
     @Operation(summary = "updateJoueur")
-    public ResponseEntity<JoueurDto> updateJoueur(@RequestBody JoueurDto joueur, @PathVariable Integer id){
+    public ResponseEntity<JoueurDto> updateJoueur(@RequestBody JoueurDto joueurDto, @PathVariable Integer id){
+        System.out.println("joueur");
         try{
-            joueur.setId(id);
-            JoueurDto joueurDto= joueurMapper.mapToDto(joueurService.updateJoueur(joueurMapper.mapToModel(joueur)));
-            return ResponseEntity.ok(joueurDto);
+            joueurDto.setId(id);
+            JoueurDto joueurDtoReturn = joueurMapper.mapToDto(joueurService.updateJoueur(joueurMapper.mapToModel(joueurDto)));
+            return ResponseEntity.ok(joueurDtoReturn);
         }catch (NotAllowedToCreateException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
